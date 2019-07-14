@@ -62,6 +62,7 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
+//		HAL_Delay(500);
 		main_run_count++;
   }
 }

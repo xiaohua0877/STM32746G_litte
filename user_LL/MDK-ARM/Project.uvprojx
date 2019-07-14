@@ -7,10 +7,10 @@
 
   <Targets>
     <Target>
-      <TargetName>STM32F746G_Discovery_AXIM_FLASH</TargetName>
+      <TargetName>STM32F746G_AXIM_FLASH</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -48,14 +48,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>STM32F746G_Discovery_AXIM_FLASH\</OutputDirectory>
-          <OutputName>STM32F746G_Discovery_AXIM_FLASH</OutputName>
+          <OutputDirectory>.\STM32F746G_AXIM_FLASH\output\</OutputDirectory>
+          <OutputName>STM32F746G_AXIM_FLASH</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath></ListingPath>
+          <ListingPath>.\STM32F746G_AXIM_FLASH\debug\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>fromelf --bin -o "$L@L.bin" "#L"</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -338,7 +338,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_FULL_LL_DRIVER,STM32F746xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../../../../Drivers/CMSIS/Device/ST/STM32F7xx/Include;../../../../Drivers/STM32F7xx_HAL_Driver/Inc</IncludePath>
+              <IncludePath>../Inc;../../Drivers/CMSIS/Device/ST/STM32F7xx/Include;../../Drivers/STM32F7xx_HAL_Driver/Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -510,7 +510,7 @@
       </Groups>
     </Target>
     <Target>
-      <TargetName>STM32F746G_Discovery_ITCM_FLASH</TargetName>
+      <TargetName>STM32F746G_ITCM_FLASH</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -551,14 +551,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>STM32F746G_Discovery_ITCM_FLASH\</OutputDirectory>
-          <OutputName>STM32F746G_Discovery_ITCM_FLASH</OutputName>
+          <OutputDirectory>.\STM32F746G_ITCM_FLASH\</OutputDirectory>
+          <OutputName>STM32F746G_ITCM_FLASH</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath></ListingPath>
+          <ListingPath>.\STM32F746G_ITCM_FLASH\debug\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -583,9 +583,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>fromelf --bin -o "$L@L.bin" "#L"</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -1020,8 +1020,8 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
         <targetInfos>
-          <targetInfo name="STM32F746G_Discovery_AXIM_FLASH"/>
-          <targetInfo name="STM32F746G_Discovery_ITCM_FLASH"/>
+          <targetInfo name="STM32F746G_AXIM_FLASH"/>
+          <targetInfo name="STM32F746G_ITCM_FLASH"/>
         </targetInfos>
       </component>
     </components>
