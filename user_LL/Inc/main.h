@@ -22,6 +22,9 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+
+#include "stm32f7xx_hal.h"
+
 /* LL drivers common to all LL examples */
 #include "stm32f7xx_ll_bus.h"
 #include "stm32f7xx_ll_rcc.h"
@@ -48,6 +51,7 @@
 #include "stm32_assert.h"
 #endif /* USE_FULL_ASSERT */
 
+//#include "usart.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 

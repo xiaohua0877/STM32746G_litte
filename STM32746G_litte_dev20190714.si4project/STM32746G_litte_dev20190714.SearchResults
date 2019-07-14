@@ -1,0 +1,6 @@
+---- RXBUFFERSIZE Matches (5 in 2 files) ----
+usart.c (user_LL\Src\usart) line 57 : uint8_t aRxBuffer_1[RXBUFFERSIZE];//HAL库使用的串口接收缓冲
+uart_init in usart.c (user_LL\Src\usart) :     HAL_UART_Receive_IT(&UART1_Handler, (uint8_t *)aRxBuffer_1, RXBUFFERSIZE);//该函数会开启接收中断：标志位UART_IT_RXNE，并且设置接收缓冲以及接收缓冲接收最大数据量
+USART1_IRQHandler in usart.c (user_LL\Src\usart) :     while(HAL_UART_Receive_IT(&UART1_Handler,(uint8_t *)aRxBuffer, RXBUFFERSIZE)!=HAL_OK)//一次处理完成之后，重新开启中断并设置RxXferCount为1
+usart.h (user_LL\Src\usart) line 27 : #define RXBUFFERSIZE   1 //缂撳瓨澶у皬
+usart.h (user_LL\Src\usart) line 28 : uint8_t aRxBuffer[RXBUFFERSIZE];//HAL搴揢SART鎺ユ敹Buffer

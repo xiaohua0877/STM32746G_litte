@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Templates_LL/Src/main.c 
+  * @file    Templates_LL/Src/main.c
   * @author  MCD Application Team
   * @brief   Main program body through the LL API
   ******************************************************************************
@@ -19,7 +19,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include <stdio.h>
 /** @addtogroup STM32F7xx_LL_Examples
   * @{
   */
@@ -35,9 +35,10 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void CPU_CACHE_Enable(void);
+extern void uart_init(uint32_t bound);
 
 /* Private functions ---------------------------------------------------------*/
-int main_run_count=0;
+int main_run_count = 0;
 /**
   * @brief  Main program
   * @param  None
@@ -45,32 +46,41 @@ int main_run_count=0;
   */
 int main(void)
 {
-  /* This project template calls firstly CPU_CACHE_Enable() in order to enable the CPU Cache.
-     This function is provided as template implementation that User may integrate 
-     in his application, to enhance the performance in case of use of AXI interface 
-     with several masters. */
+    /* This project template calls firstly CPU_CACHE_Enable() in order to enable the CPU Cache.
+       This function is provided as template implementation that User may integrate
+       in his application, to enhance the performance in case of use of AXI interface
+       with several masters. */
 
-  /* Enable the CPU Cache */
-  CPU_CACHE_Enable();
-  
-  /* Configure the system clock to 216 MHz */
-  SystemClock_Config();
-  
-  /* Add your application code here */
-  
-  
-  /* Infinite loop */
-  while (1)
-  {
-//		HAL_Delay(500);
-		main_run_count++;
-  }
+    /* Enable the CPU Cache */
+    CPU_CACHE_Enable();
+    /* STM32F7xx HAL library initialization:
+         - Configure the Flash prefetch, instruction and Data caches
+         - Configure the Systick to generate an interrupt each 1 msec
+         - Set NVIC Group Priority to 4
+         - Global MSP (MCU Support Package) initialization
+     */
+
+    HAL_Init();
+    /* Configure the system clock to 216 MHz */
+    SystemClock_Config();
+    printf("\r\n ====================\r\n");
+    uart_init(115200);              //
+    /* Add your application code here */
+    printf("hello world\r\n");
+
+    /* Infinite loop */
+    while (1)
+    {
+        HAL_Delay(500);
+        main_run_count++;
+        printf("hello world %d\r\n", main_run_count);
+    }
 }
 
 /* ==============   BOARD SPECIFIC CONFIGURATION CODE BEGIN    ============== */
 /**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
+  *         The system Clock is configured as follow :
   *            System Clock source            = PLL (HSI)
   *            SYSCLK(Hz)                     = 216000000
   *            HCLK(Hz)                       = 216000000
@@ -91,47 +101,47 @@ int main(void)
   */
 void SystemClock_Config(void)
 {
-  /* Set FLASH latency */ 
-  LL_FLASH_SetLatency(LL_FLASH_LATENCY_7);
+    /* Set FLASH latency */
+    LL_FLASH_SetLatency(LL_FLASH_LATENCY_7);
 
-  /* Enable PWR clock */
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
+    /* Enable PWR clock */
+    LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
 
-  /* Activation OverDrive Mode */
-  LL_PWR_EnableOverDriveMode();
-  while(LL_PWR_IsActiveFlag_OD() != 1)
-  {
-  };
+    /* Activation OverDrive Mode */
+    LL_PWR_EnableOverDriveMode();
+    while (LL_PWR_IsActiveFlag_OD() != 1)
+    {
+    };
 
-  /* Activation OverDrive Switching */
-  LL_PWR_EnableOverDriveSwitching();
-  while(LL_PWR_IsActiveFlag_ODSW() != 1)
-  {
-  };
-  
-  /* Main PLL configuration and activation */
-  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_16, 432, LL_RCC_PLLP_DIV_2);
-  LL_RCC_PLL_Enable();
-  while(LL_RCC_PLL_IsReady() != 1) 
-  {
-  };
-  
-  /* Sysclk activation on the main PLL */
-  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
-  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
-  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL) 
-  {
-  };
-  
-  /* Set APB1 & APB2 prescaler*/
-  LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_4);
-  LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_2);
-  
-  /* Set systick to 1ms */
-  SysTick_Config(216000000 / 1000);
-  
-  /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
-  SystemCoreClock = 216000000; 
+    /* Activation OverDrive Switching */
+    LL_PWR_EnableOverDriveSwitching();
+    while (LL_PWR_IsActiveFlag_ODSW() != 1)
+    {
+    };
+
+    /* Main PLL configuration and activation */
+    LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_16, 432, LL_RCC_PLLP_DIV_2);
+    LL_RCC_PLL_Enable();
+    while (LL_RCC_PLL_IsReady() != 1)
+    {
+    };
+
+    /* Sysclk activation on the main PLL */
+    LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+    LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
+    while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
+    {
+    };
+
+    /* Set APB1 & APB2 prescaler*/
+    LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_4);
+    LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_2);
+
+    /* Set systick to 1ms */
+    SysTick_Config(216000000 / 1000);
+
+    /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
+    SystemCoreClock = 216000000;
 }
 
 /**
@@ -141,11 +151,11 @@ void SystemClock_Config(void)
   */
 static void CPU_CACHE_Enable(void)
 {
-  /* Enable I-Cache */
-  SCB_EnableICache();
+    /* Enable I-Cache */
+    SCB_EnableICache();
 
-  /* Enable D-Cache */
-  SCB_EnableDCache();
+    /* Enable D-Cache */
+    SCB_EnableDCache();
 }
 
 /* ==============   BOARD SPECIFIC CONFIGURATION CODE END      ============== */
@@ -160,13 +170,13 @@ static void CPU_CACHE_Enable(void)
   */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d", file, line) */
+    /* User can add his own implementation to report the file name and line number,
+       ex: printf("Wrong parameters value: file %s on line %d", file, line) */
 
-  /* Infinite loop */
-  while (1)
-  {
-  }
+    /* Infinite loop */
+    while (1)
+    {
+    }
 }
 #endif
 

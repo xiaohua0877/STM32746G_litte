@@ -33,5 +33,13 @@ del *linf /s
 del *browse /s
 del *out /s
 del *sim /s
+del *sim /s
 
+del  *.sisc /s
+
+del /f /s /q  STM32746G_litte_dev20190714.si4project\Backup\*.c
+del /f /s /q  STM32746G_litte_dev20190714.si4project\Backup\*.h
+del /f /s /q  STM32746G_litte_dev20190714.si4project\cache\parse\*.sisc
+:::del /s /q ./STM32746G_litte_dev20190714.si4project/Backup/
+pause
 exit
