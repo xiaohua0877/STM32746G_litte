@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\STM32F746G_AXIM_FLASH\output\</OutputDirectory>
-          <OutputName>STM32F746G_AXIM_FLASH</OutputName>
+          <OutputName>STM32F746G_FLASH</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
